@@ -1,5 +1,4 @@
 import os
-from regex import A
 import requests
 import concurrent.futures
 from urllib.parse import urlparse, unquote

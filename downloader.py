@@ -34,7 +34,7 @@ class Downloader(concurrent.futures.ThreadPoolExecutor):
         return url, response, filepath
 
     def _download(self, url, stream=False, **kwargs):
-        response = self.session.get(url, **kwargs, stream=stream)
+        response = self.session.get(url, stream=stream, **kwargs)
         return url, response
 
     @staticmethod

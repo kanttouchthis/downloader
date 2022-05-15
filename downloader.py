@@ -1,4 +1,4 @@
-import os
+import os, shutil
 import requests
 import concurrent.futures
 from urllib.parse import urlparse, unquote
@@ -41,7 +41,7 @@ class Downloader(concurrent.futures.ThreadPoolExecutor):
         dir = os.path.dirname(os.path.abspath(filepath))
         os.makedirs(dir, exist_ok=True)
         with open(filepath, 'wb') as f:
-            for chunk in response.iter_content(chunk_size=128):
+            for chunk in response.iter_content(chunk_size=1024):
                 f.write(chunk)
 
     @staticmethod
@@ -69,4 +69,4 @@ class Downloader(concurrent.futures.ThreadPoolExecutor):
 def download(*args, **kwargs):
     return Downloader()(*args, **kwargs)
 
-#download("https://speed.hetzner.de/100MB.bin") for testing
+#download("https://speed.hetzner.de/100MB.bin") # for testing
